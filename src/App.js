@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { db } from "./firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 function App() {
+  const appetizerCollectionRef = collection(db, "appetizer");
+  const [appetizers, setAppetizers] = useState([]);
+
+  const getMenuAppetizer = async () => {
+    const appetizersData = await getDocs(appetizerCollectionRef);
+    setAppetizers(
+      appetizersData.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }))
+    );
+
+    // console.log("*************APPTIZERS*************************");
+    // console.log(appetizers);
+  };
+
+  useEffect(() => {
+    getMenuAppetizer();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>pictures of rest</div>
+      <h1>Cheli</h1>
+      <h2>menu</h2>
+      <div>
+        <h2>APPTIZERS</h2>
+        <ul>
+          {appetizers.map((appet) => {
+            return (
+              <li>
+                {appet.item} ${appet.price}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
