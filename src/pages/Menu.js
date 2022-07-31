@@ -2,6 +2,8 @@ import React from "react";
 import { db } from "../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import Appetizer from "../components/Appetizer";
+import JiangnanFood from "../components/JiangnanFood";
 
 function Menu() {
   const appetizerCollectionRef = collection(db, "appetizers");
@@ -38,35 +40,13 @@ function Menu() {
   return (
     <div>
       <div className="appet">
-        <div>
-          <h1>appetizer</h1>
-        </div>
-        <div>
-          {appetizerList.map((appet) => {
-            return (
-              <div className="menuContainer">
-                <div className="itemList">{appet.item}</div>
-                <div className="itemPrice">${appet.price}</div>
-              </div>
-            );
-          })}
-        </div>
+        <h1>appetizer</h1>
+        <Appetizer appetizerList={appetizerList}></Appetizer>
       </div>
 
       <div className="jiangNan">
-        <div>
-          <h1>Jiang Nan Reminisce</h1>
-        </div>
-        <div>
-          {jiangNanList.map((jiangNanFood) => {
-            return (
-              <div className="menuContainer">
-                <div className="itemList">{jiangNanFood.item}</div>
-                <div className="itemPrice">${jiangNanFood.price}</div>
-              </div>
-            );
-          })}
-        </div>
+        <h1>Jiang Nan Reminisce</h1>
+        <JiangnanFood jiangNanList={jiangNanList}></JiangnanFood>
       </div>
     </div>
   );
