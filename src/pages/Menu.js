@@ -3,7 +3,7 @@ import { db } from "../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 import Appetizer from "../components/Appetizer";
 import JiangnanFood from "../components/JiangnanFood";
-// import DragDrop from "../components/DragDrop";
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import { useDrop } from "react-dnd";
 
@@ -14,6 +14,8 @@ function Menu() {
   const [jiangNanList, setJiangNanList] = useState([]);
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [orderBoard, setOrderBoard] = useState([]);
+  const [appetListOfDict, setAppetListOfDict] = useState([]);
+  // const [newOrder, setNewOrder] = useState({});
 
   useEffect(() => {
     const getAppetizerList = async () => {
@@ -39,13 +41,26 @@ function Menu() {
     getJiangNanList();
   }, []);
 
-  const appetListOfDict = appetizerList.map((appet) => {
-    return {
-      foodItem: appet.item,
-      price: appet.price,
-      id: appet.id,
-    };
-  });
+  useEffect(() => {
+    const newAppetListOfDict = appetizerList.map((appet) => {
+      return {
+        foodItem: appet.item,
+        price: appet.price,
+        id: appet.id,
+      };
+    });
+    setAppetListOfDict(newAppetListOfDict);
+  }, [appetizerList]);
+
+  //to get dada structure needed
+
+  // const appetListOfDict = appetizerList.map((appet) => {
+  //   return {
+  //     foodItem: appet.item,
+  //     price: appet.price,
+  //     id: appet.id,
+  //   };
+  // });
 
   console.log("~~~~~~~~~~~~~~Appetizers~~~~~~~~~~~~~~~~~~~~~~~~~");
   console.log(appetListOfDict);
@@ -54,7 +69,12 @@ function Menu() {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "piece",
     //only accept the same type from useDrag (in ./Picture)
+    // drop: (item) => {
+    //   console.log("this is the item", item);
+    //   return addFoodToBoard(item.id);
+    // },
     drop: (item) => addFoodToBoard(item.id),
+
     // drop will take a function to identify which image we wanted to add to board
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
@@ -64,16 +84,29 @@ function Menu() {
   const addFoodToBoard = (id) => {
     // const appetizerOrder = appetizerList.filter((appet) => id === appet.id);
     const appetizerOrder = appetListOfDict.filter((appet) => id === appet.id);
+    // console.log("appetizerOrder", appetizerOrder);
     //drag new pic to board while keeping the old ones
-    // setOrderBoard((orderBoard) => [...orderBoard, { appetizerOrder }[0]]);
-    setOrderBoard([...orderBoard, { appetizerOrder }[0]]);
+    setOrderBoard((orderBoard) => [...orderBoard, { appetizerOrder }[0]]);
+    // const newOrder = appetizerOrder[0];
+    // const newOrder = appetizerList[0];
+
+    // const newOrder = ()=> {for (let food in appetizerList) {
+    //   if (id === food.id) {
+    //     newOrder = food;
+    //   }
+    // }
+    // console.log("this is newOrder", newOrder);
+    // setOrderBoard([...orderBoard, newOrder]);
+    // // if (newOrder) {
+    //   setOrderBoard([...orderBoard, newOrder]);
+    // }
     //drag new pic to board to take over the old one
     // setOrderBoard((orderBoard) => [{ appetizers }[0]]);
-    console.log(orderBoard);
+    console.log("order board", orderBoard);
   };
 
-  console.log("*************ORDERBOARD2*************************");
-  console.log(orderBoard);
+  // console.log("*************ORDERBOARD2*************************");
+  // console.log(orderBoard);
 
   return (
     <div className="MenuAndOrder">
