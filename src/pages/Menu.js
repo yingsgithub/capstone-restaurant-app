@@ -3,6 +3,7 @@ import { db } from "../firebase-config";
 import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Appetizer from "../components/Appetizer";
+import OrderBoard from "../components/OrderBoard";
 
 function Menu() {
   const appetizerCollectionRef = collection(db, "appetizers");
@@ -10,7 +11,6 @@ function Menu() {
   const [appetizerList, setAppetizerList] = useState([]);
   const [jiangNanList, setJiangNanList] = useState([]);
   const [orderList, setOrderList] = useState([]);
-  // const [orderBoard, setOrderBoard] = useState([]);
 
   useEffect(() => {
     const getAppetizerList = async () => {
@@ -45,14 +45,36 @@ function Menu() {
   //   await updateDoc(orderDoc, orderStatus);
   // };
 
-  const selectFood = (id, item, price) => {
+  const selectFood = (id, item, price, quantity) => {
     const foodDict = {
       id: id,
       item: item,
       price: price,
+      quantity: quantity + 1,
     };
     const foodList = [...orderList, foodDict];
     setOrderList(foodList);
+  };
+
+  const reduceOne = (orderId, quantity) => {
+    // for (const food in orderList) {
+    //   if (orderId === food.id) {
+    //     food.quantity -= 1;
+    //   }
+    //   //how to update orderList by using setOrderList??????
+    // }
+    const updateOrder = orderList.map((food) => {
+      if (orderId === food.id) {
+        food.quantity -= 1;
+      }
+      return orderList;
+    });
+    setOrderList(updateOrder);
+  };
+
+  const deleteFood = (orderId) => {
+    const updatedOrderList = orderList.filter((food) => food.id !== orderId);
+    setOrderList(updatedOrderList);
   };
 
   return (
@@ -86,15 +108,13 @@ function Menu() {
       </div>
 
       <div className="OrderBoard">
-        <h1>Order board</h1>
+        {/* <h1>Order board</h1> */}
         <div>
-          {orderList.map((order) => {
-            return (
-              <div>
-                {order.item},{order.price}
-              </div>
-            );
-          })}
+          <OrderBoard
+            orderList={orderList}
+            reduceOne={reduceOne}
+            deleteFood={deleteFood}
+          />
         </div>
       </div>
     </div>

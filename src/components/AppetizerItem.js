@@ -1,12 +1,12 @@
 import React from "react";
 
-function AppetizerItem({ id, item, price, selectFood }) {
+function AppetizerItem({ id, item, price, quantity, selectFood }) {
   return (
     <div>
       <section className="foodContainer">
         <button
           onClick={() => {
-            selectFood(id, item, price);
+            selectFood(id, item, price, quantity);
           }}
         >
           {" "}
