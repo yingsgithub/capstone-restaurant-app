@@ -52,24 +52,39 @@ function Menu() {
       price: price,
       quantity: quantity + 1,
     };
-    const foodList = [...orderList, foodDict];
+    const foodList = [...orderList];
+    foodList.push(foodDict);
     setOrderList(foodList);
   };
 
   const reduceOne = (orderId, quantity) => {
-    // for (const food in orderList) {
-    //   if (orderId === food.id) {
-    //     food.quantity -= 1;
-    //   }
+    const foodList = [...orderList];
+    console.log("foodlist", foodList);
+    for (let food in foodList) {
+      console.log("food", foodList[food]);
+      if (orderId === foodList[food].id) {
+        foodList[food].quantity -= 1;
+      }
+      console.log("FOODID", food["id"]);
+      console.log(orderId);
+    }
+    setOrderList(foodList);
     //   //how to update orderList by using setOrderList??????
     // }
-    const updateOrder = orderList.map((food) => {
-      if (orderId === food.id) {
-        food.quantity -= 1;
-      }
-      return orderList;
-    });
-    setOrderList(updateOrder);
+    // console.log(orderId);
+    // console.log(quantity);
+    // console.log("orderList:", orderList);
+    // const updateOrder = orderList.map((food) => {
+    //   if (orderId === food.id) {
+    //     food.quantity -= 1;
+    //     console.log(food);
+    //   }
+    //   return orderList;
+    // });
+
+    // setOrderList(updateOrder);
+    console.log("reduceOne");
+    console.log(orderList);
   };
 
   const deleteFood = (orderId) => {
