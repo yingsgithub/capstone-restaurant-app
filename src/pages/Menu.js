@@ -46,14 +46,6 @@ function Menu() {
     });
   };
 
-  // const selectFood = async (id, status) => {
-  //   //doc() create an instance of database
-  //   const orderDoc = doc(db, "appetizers", id);
-  //   //data to update
-  //   const orderStatus = { status: true };
-  //   await updateDoc(orderDoc, orderStatus);
-  // };
-
   //add food to orderBoard
   const selectFood = (id, item, price, quantity) => {
     const addFoodToBoard = () => {
