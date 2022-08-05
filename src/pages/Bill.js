@@ -1,6 +1,6 @@
 import React from "react";
 
-function Bill() {
+function Bill(orderList) {
   return <div>Bill</div>;
 }
 

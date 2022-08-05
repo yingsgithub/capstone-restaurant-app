@@ -11,7 +11,7 @@ function OrderBoard({
 }) {
   const OrderItemComp = orderList.map((order, index) => {
     return (
-      <div key={index.id}>
+      <div key={index}>
         <Order
           orderId={order.id}
           orderItem={order.item}
