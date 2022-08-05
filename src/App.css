@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.foodContainer{
+  border: 0.2rem outset lightskyblue;
+  border-radius: 12px;
+}
+
+.OrderBoard{
+  border: 0.2rem, solid, grey;
+  border-radius: 12px;
+}
+
+.OrderDisplay{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
