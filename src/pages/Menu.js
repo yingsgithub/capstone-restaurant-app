@@ -1,6 +1,6 @@
 import React from "react";
 import { db } from "../firebase-config";
-import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { collection, getDocs, addDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Appetizer from "../components/Appetizer";
 import OrderBoard from "../components/OrderBoard";
@@ -8,6 +8,7 @@ import OrderBoard from "../components/OrderBoard";
 function Menu() {
   const appetizerCollectionRef = collection(db, "appetizers");
   const jiangNanCollectionRef = collection(db, "jiangnan");
+  const OrdersCollectionRef = collection(db, "orders");
   const [appetizerList, setAppetizerList] = useState([]);
   const [jiangNanList, setJiangNanList] = useState([]);
   const [orderList, setOrderList] = useState([]);
@@ -37,6 +38,13 @@ function Menu() {
     console.log("*************APPTIZERS*************************");
     console.log(appetizerList);
   }, []);
+
+  const createOrder = async () => {
+    await addDoc(OrdersCollectionRef, {
+      orderList: orderList,
+      total: subTotal,
+    });
+  };
 
   // const selectFood = async (id, status) => {
   //   //doc() create an instance of database
@@ -158,6 +166,7 @@ function Menu() {
             deleteFood={deleteFood}
             addOne={addOne}
             subTotal={subTotal}
+            createOrder={createOrder}
           />
         </div>
       </div>

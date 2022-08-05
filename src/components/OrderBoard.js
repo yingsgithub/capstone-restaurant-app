@@ -1,7 +1,14 @@
 import React from "react";
 import Order from "./Order";
 
-function OrderBoard({ orderList, reduceOne, deleteFood, addOne, subTotal }) {
+function OrderBoard({
+  orderList,
+  reduceOne,
+  deleteFood,
+  addOne,
+  subTotal,
+  createOrder,
+}) {
   const OrderItemComp = orderList.map((order, index) => {
     return (
       <div>
@@ -23,6 +30,9 @@ function OrderBoard({ orderList, reduceOne, deleteFood, addOne, subTotal }) {
       {OrderItemComp}
       <h1> Total ${subTotal} </h1>
       {/* //need to pass function to count total !!!!!!!!!!!!!!*/}
+      <div>
+        <button onClick={createOrder}>Submit Orders</button>
+      </div>
     </div>
   );
 }
