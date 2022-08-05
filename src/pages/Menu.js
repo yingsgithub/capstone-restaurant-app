@@ -11,6 +11,7 @@ function Menu() {
   const [appetizerList, setAppetizerList] = useState([]);
   const [jiangNanList, setJiangNanList] = useState([]);
   const [orderList, setOrderList] = useState([]);
+  const [subTotal, setSubTotal] = useState(0);
 
   useEffect(() => {
     const getAppetizerList = async () => {
@@ -45,52 +46,78 @@ function Menu() {
   //   await updateDoc(orderDoc, orderStatus);
   // };
 
+  //add food to orderBoard
   const selectFood = (id, item, price, quantity) => {
-    const foodDict = {
-      id: id,
-      item: item,
-      price: price,
-      quantity: quantity + 1,
+    const addFoodToBoard = () => {
+      const foodDict = {
+        id: id,
+        item: item,
+        price: price,
+        quantity: quantity + 1,
+      };
+
+      const foodList = [...orderList];
+      foodList.push(foodDict);
+      setOrderList(foodList);
     };
+
+    let foodIdList = [];
+    for (let food of orderList) {
+      foodIdList.push(food.id);
+    }
+    if (!foodIdList.includes(id)) {
+      addFoodToBoard();
+    } else {
+      console.log("This food already in board!");
+      // create a pop up box for the message !!!!!!!!!!!!!!!!
+    }
+  };
+
+  const addOne = (orderId, quantity) => {
     const foodList = [...orderList];
-    foodList.push(foodDict);
+    for (let food of foodList) {
+      if (orderId === food.id) {
+        food.quantity += 1;
+      }
+    }
     setOrderList(foodList);
   };
 
   const reduceOne = (orderId, quantity) => {
     const foodList = [...orderList];
-    console.log("foodlist", foodList);
-    for (let food in foodList) {
-      console.log("food", foodList[food]);
-      if (orderId === foodList[food].id) {
-        foodList[food].quantity -= 1;
+    //food is index of the arr-foodList
+    for (let food of foodList) {
+      if (orderId === food.id) {
+        food.quantity -= 1;
       }
-      console.log("FOODID", food["id"]);
-      console.log(orderId);
     }
     setOrderList(foodList);
-    //   //how to update orderList by using setOrderList??????
-    // }
-    // console.log(orderId);
-    // console.log(quantity);
-    // console.log("orderList:", orderList);
-    // const updateOrder = orderList.map((food) => {
-    //   if (orderId === food.id) {
-    //     food.quantity -= 1;
-    //     console.log(food);
-    //   }
-    //   return orderList;
-    // });
 
-    // setOrderList(updateOrder);
-    console.log("reduceOne");
-    console.log(orderList);
+    //delete oder item if quantity =0
+    for (let food of orderList) {
+      if (food.quantity === 0) {
+        deleteFood(orderId);
+      }
+    }
   };
 
   const deleteFood = (orderId) => {
     const updatedOrderList = orderList.filter((food) => food.id !== orderId);
     setOrderList(updatedOrderList);
   };
+
+  // count subtotal
+  const subTotalCal = () => {
+    let priceTotal = 0;
+    for (let order of orderList) {
+      priceTotal += order.price * order.quantity;
+    }
+    setSubTotal(priceTotal);
+  };
+
+  useEffect(() => {
+    subTotalCal();
+  }, [orderList]);
 
   return (
     <div>
@@ -129,6 +156,8 @@ function Menu() {
             orderList={orderList}
             reduceOne={reduceOne}
             deleteFood={deleteFood}
+            addOne={addOne}
+            subTotal={subTotal}
           />
         </div>
       </div>

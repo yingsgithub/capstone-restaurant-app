@@ -9,8 +9,7 @@ function AppetizerItem({ id, item, price, quantity, selectFood }) {
             selectFood(id, item, price, quantity);
           }}
         >
-          {" "}
-          +{" "}
+          Add
         </button>
         <div>{item}</div>
         <div>{price}</div>

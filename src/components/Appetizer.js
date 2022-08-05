@@ -18,7 +18,7 @@ const Appetizer = ({ appetizerList, selectFood }) => {
 
   return (
     <section>
-      <ul>{appetizerItemComp}</ul>
+      <div>{appetizerItemComp}</div>
     </section>
   );
 };

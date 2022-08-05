@@ -7,6 +7,7 @@ const Order = ({
   quantity,
   reduceOne,
   deleteFood,
+  addOne,
 }) => {
   return (
     <div>
@@ -23,7 +24,14 @@ const Order = ({
             -{" "}
           </button>
           {quantity}
-          <button> + </button>
+          <button
+            onClick={() => {
+              addOne(orderId, quantity);
+            }}
+          >
+            {" "}
+            +{" "}
+          </button>
         </div>
         <div className="RemoveFood">
           <button
