@@ -136,7 +136,10 @@ function App() {
             />
           }
         />
-        <Route path="/bill" element={<Bill />} />
+        <Route
+          path="/bill"
+          element={<Bill orderList={orderList} subTotal={subTotal} />}
+        />
         {/* element: the comp which render when we go to this path */}
       </Routes>
     </Router>
