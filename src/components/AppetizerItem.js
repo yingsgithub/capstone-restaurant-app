@@ -1,9 +1,14 @@
 import React from "react";
 
-function AppetizerItem({ id, item, price, quantity, selectFood }) {
+function AppetizerItem({ id, item, price, quantity, selectFood, url }) {
   return (
-    <div>
+    <div className="food-box">
       <section className="foodContainer">
+        <div className="column">
+          <img src={url} alt="food img" className="food-img" />
+        </div>
+        <div>{item}</div>
+        <div>${price}</div>
         <button
           onClick={() => {
             selectFood(id, item, price, quantity);
@@ -11,8 +16,6 @@ function AppetizerItem({ id, item, price, quantity, selectFood }) {
         >
           Add
         </button>
-        <div>{item}</div>
-        <div>{price}</div>
       </section>
     </div>
   );

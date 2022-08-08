@@ -1,24 +1,62 @@
 import React from "react";
 import AppetizerItem from "./AppetizerItem";
 
-const Appetizer = ({ appetizerList, selectFood }) => {
+const Appetizer = ({ appetizerList, selectFood, foodType, selectFoodType }) => {
   const appetizerItemComp = appetizerList.map((appet, index) => {
-    return (
-      <div key={appet.id}>
-        <AppetizerItem
-          id={appet.id}
-          item={appet.item}
-          price={appet.price}
-          quantity={appet.quantity}
-          selectFood={selectFood}
-        />
-      </div>
-    );
+    if (appet.type === foodType) {
+      return (
+        <div key={index}>
+          <AppetizerItem
+            id={appet.id}
+            item={appet.item}
+            price={appet.price}
+            quantity={appet.quantity}
+            url={appet.url}
+            selectFood={selectFood}
+          />
+        </div>
+      );
+    }
   });
 
   return (
     <section>
-      <div>{appetizerItemComp}</div>
+      <button
+        onClick={() => {
+          selectFoodType("appet");
+        }}
+      >
+        Appetizer
+      </button>
+      <button
+        onClick={() => {
+          selectFoodType("jiangnan");
+        }}
+      >
+        Jiang Nan Reminisce
+      </button>
+      <button
+        onClick={() => {
+          selectFoodType("cheli");
+        }}
+      >
+        Taste of Che-Li
+      </button>
+      <button
+        onClick={() => {
+          selectFoodType("desserts");
+        }}
+      >
+        Desserts
+      </button>
+      <button
+        onClick={() => {
+          selectFoodType("rice");
+        }}
+      >
+        Rice & Noodles
+      </button>
+      <div className="row">{appetizerItemComp}</div>
     </section>
   );
 };

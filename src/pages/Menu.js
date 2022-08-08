@@ -11,16 +11,20 @@ function Menu({
   reduceOne,
   deleteFood,
   subTotal,
+  foodType,
+  selectFoodType,
 }) {
   return (
     <div>
       <div className="MenuBoard">
         <div className="appet">
-          <h1>Appetizer</h1>
+          {/* <h1>Appetizer</h1> */}
           <div>
             <Appetizer
               appetizerList={appetizerList}
               selectFood={selectFood}
+              foodType={foodType}
+              selectFoodType={selectFoodType}
             ></Appetizer>
           </div>
         </div>

@@ -6,15 +6,22 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Bill from "./pages/Bill";
+// import { useNavigate } from "react-router-dom";
 // import Appetizer from "./components/Appetizer";
 // import OrderBoard from "./components/OrderBoard";
 
 function App() {
-  const appetizerCollectionRef = collection(db, "appetizers");
+  // let navigate = useNavigate();
+  const appetizerCollectionRef = collection(db, "menu");
   const OrdersCollectionRef = collection(db, "orders");
   const [appetizerList, setAppetizerList] = useState([]);
   const [orderList, setOrderList] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
+  const [foodType, setFoodType] = useState("");
+
+  const selectFoodType = (type) => {
+    setFoodType(type);
+  };
 
   useEffect(() => {
     const getAppetizerList = async () => {
@@ -133,6 +140,8 @@ function App() {
               reduceOne={reduceOne}
               deleteFood={deleteFood}
               subTotal={subTotal}
+              foodType={foodType}
+              selectFoodType={selectFoodType}
             />
           }
         />
