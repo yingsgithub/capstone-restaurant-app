@@ -21,6 +21,9 @@ const Appetizer = ({ appetizerList, selectFood, foodType, selectFoodType }) => {
 
   return (
     <section>
+      <br></br>
+      <br></br>
+      <br></br>
       <button
         onClick={() => {
           selectFoodType("appet");
@@ -44,18 +47,29 @@ const Appetizer = ({ appetizerList, selectFood, foodType, selectFoodType }) => {
       </button>
       <button
         onClick={() => {
-          selectFoodType("desserts");
-        }}
-      >
-        Desserts
-      </button>
-      <button
-        onClick={() => {
           selectFoodType("rice");
         }}
       >
         Rice & Noodles
       </button>
+      <button
+        onClick={() => {
+          selectFoodType("dimsum");
+        }}
+      >
+        Homemade Dim Sum
+      </button>
+      <button
+        onClick={() => {
+          selectFoodType("desserts");
+        }}
+      >
+        Desserts
+      </button>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <div className="row">{appetizerItemComp}</div>
     </section>
   );
