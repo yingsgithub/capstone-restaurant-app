@@ -12,9 +12,9 @@ import Bill from "./pages/Bill";
 
 function App() {
   // let navigate = useNavigate();
-  const appetizerCollectionRef = collection(db, "menu");
+  const menuCollectionRef = collection(db, "menu");
   const OrdersCollectionRef = collection(db, "orders");
-  const [appetizerList, setAppetizerList] = useState([]);
+  const [menuList, setMenuList] = useState([]);
   const [orderList, setOrderList] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
   const [foodType, setFoodType] = useState("");
@@ -24,18 +24,18 @@ function App() {
   };
 
   useEffect(() => {
-    const getAppetizerList = async () => {
-      const appetizersData = await getDocs(appetizerCollectionRef);
-      setAppetizerList(
-        appetizersData.docs.map((doc) => ({
+    const getMenuList = async () => {
+      const menuData = await getDocs(menuCollectionRef);
+      setMenuList(
+        menuData.docs.map((doc) => ({
           ...doc.data(),
         }))
       );
     };
-    getAppetizerList();
+    getMenuList();
 
-    console.log("*************APPTIZERS*************************");
-    console.log(appetizerList);
+    console.log("*************MENU*************************");
+    console.log(menuList);
   }, []);
 
   //add orders to firebase
@@ -132,7 +132,7 @@ function App() {
           path="/menu"
           element={
             <Menu
-              appetizerList={appetizerList}
+              menuList={menuList}
               orderList={orderList}
               selectFood={selectFood}
               createOrder={createOrder}

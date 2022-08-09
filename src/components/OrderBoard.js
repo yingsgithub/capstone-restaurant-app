@@ -1,6 +1,6 @@
 import React from "react";
 import Order from "./Order";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function OrderBoard({
   orderList,
@@ -30,7 +30,6 @@ function OrderBoard({
       <h1>Orders</h1>
       {OrderItemComp}
       <h1> Total ${subTotal} </h1>
-      {/* //need to pass function to count total !!!!!!!!!!!!!!*/}
       <div>
         <button onClick={createOrder}>Submit Orders</button>
       </div>

@@ -1,17 +1,17 @@
 import React from "react";
-import AppetizerItem from "./AppetizerItem";
+import MenuItem from "./MenuItem";
 
-const Appetizer = ({ appetizerList, selectFood, foodType, selectFoodType }) => {
-  const appetizerItemComp = appetizerList.map((appet, index) => {
-    if (appet.type === foodType) {
+const Menubox = ({ menuList, selectFood, foodType, selectFoodType }) => {
+  const menuItemComp = menuList.map((food, index) => {
+    if (food.type === foodType) {
       return (
         <div key={index}>
-          <AppetizerItem
-            id={appet.id}
-            item={appet.item}
-            price={appet.price}
-            quantity={appet.quantity}
-            url={appet.url}
+          <MenuItem
+            id={food.id}
+            item={food.item}
+            price={food.price}
+            quantity={food.quantity}
+            url={food.url}
             selectFood={selectFood}
           />
         </div>
@@ -70,9 +70,9 @@ const Appetizer = ({ appetizerList, selectFood, foodType, selectFoodType }) => {
       <br></br>
       <br></br>
       <br></br>
-      <div className="row">{appetizerItemComp}</div>
+      <div className="row">{menuItemComp}</div>
     </section>
   );
 };
 
-export default Appetizer;
+export default Menubox;

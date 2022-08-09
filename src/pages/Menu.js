@@ -1,9 +1,9 @@
 import React from "react";
-import Appetizer from "../components/Appetizer";
+import Menubox from "../components/Menubox";
 import OrderBoard from "../components/OrderBoard";
 
 function Menu({
-  appetizerList,
+  menuList,
   orderList,
   selectFood,
   createOrder,
@@ -18,36 +18,18 @@ function Menu({
     <div>
       <div className="MenuBoard">
         <div className="appet">
-          {/* <h1>Appetizer</h1> */}
           <div>
-            <Appetizer
-              appetizerList={appetizerList}
+            <Menubox
+              menuList={menuList}
               selectFood={selectFood}
               foodType={foodType}
               selectFoodType={selectFoodType}
-            ></Appetizer>
+            ></Menubox>
           </div>
         </div>
-
-        {/* <div className="jiangNan">
-          <div>
-            <h1>Jiang Nan Reminisce</h1>
-          </div>
-          <div>
-            {jiangNanList.map((jiangNanFood) => {
-              return (
-                <div className="foodContainer">
-                  <div className="itemList">{jiangNanFood.item}</div>
-                  <div className="itemPrice">${jiangNanFood.price}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div> */}
       </div>
 
       <div className="OrderBoard">
-        {/* <h1>Order board</h1> */}
         <div>
           <OrderBoard
             orderList={orderList}

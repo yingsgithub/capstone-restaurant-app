@@ -1,6 +1,6 @@
 import React from "react";
 
-function AppetizerItem({ id, item, price, quantity, selectFood, url }) {
+function MenuItem({ id, item, price, quantity, selectFood, url }) {
   return (
     <div className="food-box">
       <section className="foodContainer">
@@ -21,4 +21,4 @@ function AppetizerItem({ id, item, price, quantity, selectFood, url }) {
   );
 }
 
-export default AppetizerItem;
+export default MenuItem;
