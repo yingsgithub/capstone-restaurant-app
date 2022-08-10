@@ -13,6 +13,12 @@ function Menu({
   subTotal,
   foodType,
   selectFoodType,
+  setTableNum,
+  tableNum,
+  buttonPopup,
+  setButtonPopup,
+  peopleNum,
+  setPeopleNum,
 }) {
   return (
     <div>
@@ -38,6 +44,12 @@ function Menu({
             addOne={addOne}
             subTotal={subTotal}
             createOrder={createOrder}
+            setTableNum={setTableNum}
+            tableNum={tableNum}
+            peopleNum={peopleNum}
+            setPeopleNum={setPeopleNum}
+            buttonPopup={buttonPopup}
+            setButtonPopup={setButtonPopup}
           />
         </div>
       </div>

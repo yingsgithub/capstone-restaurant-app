@@ -18,6 +18,9 @@ function App() {
   const [orderList, setOrderList] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
   const [foodType, setFoodType] = useState("");
+  const [tableNum, setTableNum] = useState(0);
+  const [peopleNum, setPeopleNum] = useState(0);
+  const [buttonPopup, setButtonPopup] = useState(false);
 
   const selectFoodType = (type) => {
     setFoodType(type);
@@ -34,8 +37,8 @@ function App() {
     };
     getMenuList();
 
-    console.log("*************MENU*************************");
-    console.log(menuList);
+    // console.log("*************MENU*************************");
+    // console.log(menuList);
   }, []);
 
   //add orders to firebase
@@ -43,7 +46,13 @@ function App() {
     await addDoc(OrdersCollectionRef, {
       orderList: orderList,
       total: subTotal,
+      table: tableNum,
+      people: peopleNum,
+      payment: false,
     });
+    // setPeopleNum(0);
+    // setTableNum(0);
+    setOrderList([]);
   };
 
   //add food to orderBoard
@@ -142,6 +151,12 @@ function App() {
               subTotal={subTotal}
               foodType={foodType}
               selectFoodType={selectFoodType}
+              tableNum={tableNum}
+              setTableNum={setTableNum}
+              buttonPopup={buttonPopup}
+              peopleNum={peopleNum}
+              setPeopleNum={setPeopleNum}
+              setButtonPopup={setButtonPopup}
             />
           }
         />
