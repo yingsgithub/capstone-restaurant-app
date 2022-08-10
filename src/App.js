@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Bill from "./pages/Bill";
+import Popupmessage from "./components/Popupmessage";
 // import { useNavigate } from "react-router-dom";
 // import Appetizer from "./components/Appetizer";
 // import OrderBoard from "./components/OrderBoard";
@@ -165,6 +166,7 @@ function App() {
           element={<Bill orderList={orderList} subTotal={subTotal} />}
         />
         {/* element: the comp which render when we go to this path */}
+        {/* <Route path="/message" element={<Popupmessage />} /> */}
       </Routes>
     </Router>
   );
