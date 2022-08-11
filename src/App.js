@@ -163,6 +163,8 @@ function App() {
     // });
   };
 
+  const likeButton = () => {};
+
   return (
     <Router>
       <nav>
@@ -208,6 +210,7 @@ function App() {
               ordersInBill={ordersInBill}
               tableNum={tableNum}
               peopleNum={peopleNum}
+              likeButton={likeButton}
             />
           }
         />
