@@ -5,7 +5,10 @@ function Billitem({ orderId, orderItem, itemPrice, quantity }) {
     <div>
       <span>{orderItem}</span>
       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      <span>${itemPrice}</span>
+      <span>
+        {" "}
+        {quantity} x ${itemPrice}{" "}
+      </span>
     </div>
   );
 }

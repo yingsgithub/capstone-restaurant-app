@@ -1,13 +1,20 @@
 import "./App.css";
 import { db } from "./firebase-config";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Bill from "./pages/Bill";
 import Popupmessage from "./components/Popupmessage";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import Appetizer from "./components/Appetizer";
 // import OrderBoard from "./components/OrderBoard";
 
@@ -22,6 +29,7 @@ function App() {
   const [tableNum, setTableNum] = useState(0);
   const [peopleNum, setPeopleNum] = useState(0);
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [ordersInBill, setOrdersInBill] = useState([]);
 
   const selectFoodType = (type) => {
     setFoodType(type);
@@ -129,12 +137,44 @@ function App() {
     subTotalCal();
   }, [orderList]);
 
+  // get bills associated with current table
+  const getBill = async () => {
+    const q = query(
+      collection(db, "orders"),
+      // where("table", "==", tableNum)
+      where("payment", "==", false)
+    );
+    const querySnapshot = await getDocs(q);
+    // onSnapshot(q, (snapshot) => {
+    let foodInBill = [];
+    querySnapshot.docs.forEach((doc) => {
+      foodInBill.push({ ...doc.data(), id: doc.id });
+    });
+
+    const ordersList = [];
+    for (let order of foodInBill) {
+      if (order.table === tableNum) {
+        ordersList.push(order);
+      }
+    }
+    setOrdersInBill(ordersList);
+    console.log("ORDERS IN BILL", ordersInBill);
+
+    // });
+  };
+
   return (
     <Router>
       <nav>
         <Link to="/"> Home </Link>
         <Link to="/menu"> Menu </Link>
-        <Link to="/bill"> Bill </Link>
+        {tableNum ? (
+          <Link onClick={getBill} to="/bill">
+            View Bill
+          </Link>
+        ) : (
+          <></>
+        )}
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -163,7 +203,13 @@ function App() {
         />
         <Route
           path="/bill"
-          element={<Bill orderList={orderList} subTotal={subTotal} />}
+          element={
+            <Bill
+              ordersInBill={ordersInBill}
+              tableNum={tableNum}
+              peopleNum={peopleNum}
+            />
+          }
         />
         {/* element: the comp which render when we go to this path */}
         {/* <Route path="/message" element={<Popupmessage />} /> */}
