@@ -14,6 +14,7 @@ const Menubox = ({ menuList, selectFood, foodType, selectFoodType }) => {
             quantity={food.quantity}
             url={food.url}
             selectFood={selectFood}
+            like={food.like}
           />
         </div>
       );

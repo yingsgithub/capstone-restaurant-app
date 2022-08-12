@@ -3,10 +3,12 @@ import { db } from "./firebase-config";
 import {
   collection,
   getDocs,
+  doc,
   addDoc,
   query,
   where,
   onSnapshot,
+  updateDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -15,6 +17,7 @@ import Menu from "./pages/Menu";
 import Bill from "./pages/Bill";
 import Popupmessage from "./components/Popupmessage";
 import { useNavigate } from "react-router-dom";
+import { async } from "@firebase/util";
 // import Appetizer from "./components/Appetizer";
 // import OrderBoard from "./components/OrderBoard";
 
@@ -46,8 +49,8 @@ function App() {
     };
     getMenuList();
 
-    // console.log("*************MENU*************************");
-    // console.log(menuList);
+    console.log("*************MENU*************************");
+    console.log(menuList);
   }, []);
 
   //add orders to firebase
@@ -163,7 +166,22 @@ function App() {
     // });
   };
 
-  const likeButton = () => {};
+  const likeButton = (orderItem) => {
+    const found = menuList.find((e) => e.item === orderItem);
+
+    // console.log("is it the right food?", found);
+    // console.log("food id", found.id);
+    // console.log("food like", found.like + 1);
+    // console.log("food price", found.price);
+
+    const updateLikeStatus = async () => {
+      // const menuDoc = doc(db, "menu", likeItemId.toString());
+      const menuDoc = doc(db, "menu", found.id);
+      const likeFields = { like: found.like + 1 };
+      await updateDoc(menuDoc, likeFields);
+    };
+    updateLikeStatus();
+  };
 
   return (
     <Router>
