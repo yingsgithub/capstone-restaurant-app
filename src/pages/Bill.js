@@ -29,7 +29,7 @@ function Bill({ tableNum, peopleNum, ordersInBill, likeButton, likeFood }) {
   });
 
   const Tax = Number(Number.parseFloat(finalTotal * 0.08).toFixed(2));
-  const Total = finalTotal + Tax;
+  const Total = Number(Number.parseFloat(finalTotal + Tax).toFixed(2));
 
   return (
     <div>
