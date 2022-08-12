@@ -85,7 +85,18 @@ img{
   flex: 33.33%;
   padding: 5px;
   transition: transform .1s; 
+
+  position: relative;
+  text-align: center;
+  color: white;
 }
 .column:hover {
   transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
 }

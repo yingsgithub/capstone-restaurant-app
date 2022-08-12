@@ -1,7 +1,7 @@
 import React from "react";
 import Billitem from "../components/Billitem";
 
-function Bill({ tableNum, peopleNum, ordersInBill, likeButton }) {
+function Bill({ tableNum, peopleNum, ordersInBill, likeButton, likeFood }) {
   let finalBill = [];
   let finalTotal = 0;
   for (let bill of ordersInBill) {
@@ -20,7 +20,9 @@ function Bill({ tableNum, peopleNum, ordersInBill, likeButton }) {
           orderItem={order.item}
           itemPrice={order.price}
           quantity={order.quantity}
+          likeStatus={order.like}
           likeButton={likeButton}
+          likeFood={likeFood}
         />
       </div>
     );

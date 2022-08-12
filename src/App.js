@@ -34,6 +34,8 @@ function App() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [ordersInBill, setOrdersInBill] = useState([]);
 
+  const [likeFood, setLikeFood] = useState([]);
+
   const selectFoodType = (type) => {
     setFoodType(type);
   };
@@ -49,9 +51,9 @@ function App() {
     };
     getMenuList();
 
-    console.log("*************MENU*************************");
-    console.log(menuList);
-  }, []);
+    // console.log("*************MENU*************************");
+    // console.log(menuList);
+  }, [likeFood]);
 
   //add orders to firebase
   const createOrder = async () => {
@@ -75,6 +77,7 @@ function App() {
         item: item,
         price: price,
         quantity: quantity + 1,
+        like: false,
       };
 
       const foodList = [...orderList];
@@ -148,7 +151,6 @@ function App() {
       where("payment", "==", false)
     );
     const querySnapshot = await getDocs(q);
-    // onSnapshot(q, (snapshot) => {
     let foodInBill = [];
     querySnapshot.docs.forEach((doc) => {
       foodInBill.push({ ...doc.data(), id: doc.id });
@@ -166,7 +168,7 @@ function App() {
     // });
   };
 
-  const likeButton = (orderItem) => {
+  const likeButton = (orderItem, likeStatus) => {
     const found = menuList.find((e) => e.item === orderItem);
 
     // console.log("is it the right food?", found);
@@ -174,13 +176,15 @@ function App() {
     // console.log("food like", found.like + 1);
     // console.log("food price", found.price);
 
-    const updateLikeStatus = async () => {
+    const updateLikeStatusInMenu = async () => {
       // const menuDoc = doc(db, "menu", likeItemId.toString());
       const menuDoc = doc(db, "menu", found.id);
       const likeFields = { like: found.like + 1 };
       await updateDoc(menuDoc, likeFields);
     };
-    updateLikeStatus();
+    updateLikeStatusInMenu();
+
+    setLikeFood([...likeFood, orderItem]);
   };
 
   return (
@@ -229,6 +233,7 @@ function App() {
               tableNum={tableNum}
               peopleNum={peopleNum}
               likeButton={likeButton}
+              likeFood={likeFood}
             />
           }
         />

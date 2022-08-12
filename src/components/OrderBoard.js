@@ -25,6 +25,7 @@ function OrderBoard({
           orderItem={order.item}
           itemPrice={order.price}
           quantity={order.quantity}
+          likeStatus={order.like}
           reduceOne={reduceOne}
           deleteFood={deleteFood}
           addOne={addOne}
