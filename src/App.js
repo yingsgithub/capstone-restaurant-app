@@ -7,7 +7,6 @@ import {
   addDoc,
   query,
   where,
-  onSnapshot,
   updateDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -15,11 +14,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Bill from "./pages/Bill";
-import Popupmessage from "./components/Popupmessage";
-import { useNavigate } from "react-router-dom";
-import { async } from "@firebase/util";
-// import Appetizer from "./components/Appetizer";
-// import OrderBoard from "./components/OrderBoard";
+// import Popupmessage from "./components/Popupmessage";
+import axios from "axios";
 
 function App() {
   // let navigate = useNavigate();
@@ -35,6 +31,8 @@ function App() {
   const [ordersInBill, setOrdersInBill] = useState([]);
 
   const [likeFood, setLikeFood] = useState([]);
+  const [quote, setQuote] = useState({});
+  const [openFortune, setOpenFortune] = useState(false);
 
   const selectFoodType = (type) => {
     setFoodType(type);
@@ -187,6 +185,24 @@ function App() {
     setLikeFood([...likeFood, orderItem]);
   };
 
+  // ~~~~~~~~~~~~~~~~~~~~~~fortune cookie~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  const getFortuneCookie = () => {
+    axios
+      // .get("https://goquotes-api.herokuapp.com/api/v1/random?count=1")
+      .get("https://free-quotes-api.herokuapp.com/")
+      // .get("https://animechan.vercel.app/api/random")
+      .then((response) => {
+        console.log("@@@@@@@@@", response.data);
+        setQuote(response.data);
+        setOpenFortune(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  // getFortuneCookie();
+  // console.log("@@@@@@@@@@", animeQuote);
+
   return (
     <Router>
       <nav>
@@ -234,6 +250,9 @@ function App() {
               peopleNum={peopleNum}
               likeButton={likeButton}
               likeFood={likeFood}
+              getFortuneCookie={getFortuneCookie}
+              quote={quote}
+              openFortune={openFortune}
             />
           }
         />

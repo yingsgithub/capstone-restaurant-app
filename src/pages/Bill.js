@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Billitem from "../components/Billitem";
 
-function Bill({ tableNum, peopleNum, ordersInBill, likeButton, likeFood }) {
+function Bill({
+  tableNum,
+  peopleNum,
+  ordersInBill,
+  likeButton,
+  likeFood,
+  quote,
+  getFortuneCookie,
+  openFortune,
+}) {
   let finalBill = [];
   let finalTotal = 0;
   for (let bill of ordersInBill) {
@@ -28,8 +37,26 @@ function Bill({ tableNum, peopleNum, ordersInBill, likeButton, likeFood }) {
     );
   });
 
+  // const [subBill, setSubBill] = useState([]);
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   console.log("bill submitted");
+
+  //   setSubBill([]);
+  // };
+
+  // console.log("subbbbbbbilll", subBill);
+
+  // const displaySubBill = () => {
+  //   for (let i = 0; i < subBill.length; i++) {
+  //     return <div>Bill # {i} : $ subBill[i]</div>;
+  //   }
+  // };
+
   const Tax = Number(Number.parseFloat(finalTotal * 0.08).toFixed(2));
   const Total = Number(Number.parseFloat(finalTotal + Tax).toFixed(2));
+
+  const [paymentMessage, setPaymentMessage] = useState("");
 
   const paymentOption = [
     { value: "", text: "...Choose an option" },
@@ -40,6 +67,19 @@ function Bill({ tableNum, peopleNum, ordersInBill, likeButton, likeFood }) {
 
   const selectPayment = (event) => {
     console.log(event.target.value);
+    if (event.target.value == "As it is") {
+      setPaymentMessage(
+        `Your bill is $ ${Total}. 
+        Thank you for eating at Cheli, we will bring your bill soon!`
+      );
+    } else if (event.target.value == "Split by num of peoples") {
+      const message = `Your bill will be splitted into ${peopleNum} bills, each bill is $ ${
+        Total / peopleNum
+      }. Thank you for eating at Cheli, we will bring your bill soon!`;
+      setPaymentMessage(message);
+    } else if (event.target.value == "Split in my own way") {
+      setPaymentMessage("");
+    }
   };
 
   return (
@@ -66,7 +106,43 @@ function Bill({ tableNum, peopleNum, ordersInBill, likeButton, likeFood }) {
             );
           })}
         </select>
+        <div>
+          {paymentMessage ? (
+            <p> {paymentMessage}</p>
+          ) : (
+            <div>
+              {/* <form onSubmit={handleSubmit}>
+                <input
+                  type="number"
+                  value={subBill}
+                  onChange={(event) => {
+                    setSubBill(event.target.value);
+                  }}
+                ></input>
+                <button type="submit">add a bill</button>
+              </form> */}
+            </div>
+          )}
+        </div>
       </div>
+      {/* fortune Cookie */}
+      {paymentMessage ? (
+        <div className="cookie-container">
+          <h1>Fortune Cookie Time</h1>
+          <button className="box" onClick={getFortuneCookie}>
+            Open a cookie
+          </button>
+          <br></br>
+          <img
+            className="cookie"
+            src="/Screen Shot 2022-08-14 at 11.03.48 AM.png"
+            alt="fortune cookie"
+          />
+          <div className="fortune">{quote.quote}</div>
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 }
