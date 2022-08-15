@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Billitem from "../components/Billitem";
+import "../App.css";
 
 function Bill({
   tableNum,
@@ -82,36 +83,65 @@ function Bill({
     }
   };
 
+  const myBillStyle = {
+    backgroundImage: "url(/shuimojiangnan.png)",
+    height: "70vh",
+    marginTop: "0px",
+    marginLeft: "200px",
+    // fontSize: "50px",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  };
+
   return (
-    <div>
-      <h1>Table #: {tableNum}</h1>
-      <h4> people: {peopleNum} people</h4>
-      <div>{BillItemComp}</div>
-      <div>
-        <h2>Sub Total: ${finalTotal}</h2>
-        <h2>Tax: ${Tax}</h2>
-        <h2>Total: ${Total}</h2>
-      </div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <div>
-        <h2>How would you like to pay your bill?</h2>
-        <select onChange={selectPayment} name="paymentOptions" id="pmt-select">
-          {paymentOption.map((option, index) => {
-            return (
-              <option key={index} value={option.value}>
-                {option.text}
-              </option>
-            );
-          })}
-        </select>
+    <div className="bill-page" style={myBillStyle}>
+      <div className="bill-container">
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <h2>Table #: {tableNum}</h2>
+        <h4>{peopleNum} people</h4>
+        <div>{BillItemComp}</div>
         <div>
-          {paymentMessage ? (
-            <p> {paymentMessage}</p>
-          ) : (
-            <div>
-              {/* <form onSubmit={handleSubmit}>
+          <h3>Sub Total: ${finalTotal}</h3>
+          <h3>Tax: ${Tax}</h3>
+          <h3>Total: ${Total}</h3>
+        </div>
+        {/* </div> */}
+        <br></br>
+        <br></br>
+
+        <div>
+          <h2>How would you like to pay your bill?</h2>
+          <select
+            onChange={selectPayment}
+            name="paymentOptions"
+            id="pmt-select"
+          >
+            {paymentOption.map((option, index) => {
+              return (
+                <option key={index} value={option.value}>
+                  {option.text}
+                </option>
+              );
+            })}
+          </select>
+          <div className="pmt-message">
+            {paymentMessage ? (
+              <div> {paymentMessage}</div>
+            ) : (
+              <div>
+                {/* <form onSubmit={handleSubmit}>
                 <input
                   type="number"
                   value={subBill}
@@ -121,24 +151,32 @@ function Bill({
                 ></input>
                 <button type="submit">add a bill</button>
               </form> */}
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       {/* fortune Cookie */}
       {paymentMessage ? (
         <div className="cookie-container">
           <h1>Fortune Cookie Time</h1>
-          <button className="box" onClick={getFortuneCookie}>
-            Open a cookie
-          </button>
+
+          {/* <button img src className="cookie-btn" onClick={getFortuneCookie}> */}
+
           <br></br>
-          <img
-            className="cookie"
-            src="/Screen Shot 2022-08-14 at 11.03.48 AM.png"
-            alt="fortune cookie"
-          />
-          <div className="fortune">{quote.quote}</div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <div className="cookie-fortune">
+            <div className="cookie-img">
+              <img
+                src="/Screen Shot 2022-08-14 at 11.03.48 AM.png"
+                alt="fortune cookie"
+                onClick={getFortuneCookie}
+              />
+            </div>
+            <div className="cookie-quote">{quote.quote}</div>
+          </div>
         </div>
       ) : (
         <div />

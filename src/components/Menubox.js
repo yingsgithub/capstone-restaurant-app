@@ -21,19 +21,31 @@ const Menubox = ({ menuList, selectFood, foodType, selectFoodType }) => {
     }
   });
 
+  const myMenuStyle02 = {
+    // backgroundImage: "url(/shuimojiangnan.png)",
+    height: "60vh",
+    marginTop: "20px",
+    // fontSize: "50px",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+  };
+
   return (
-    <section>
+    <section className="menu-bkg" style={myMenuStyle02}>
       <br></br>
       <br></br>
       <br></br>
       <button
+        className="menu-btn"
         onClick={() => {
           selectFoodType("appet");
         }}
       >
         Appetizer
       </button>
+
       <button
+        className="menu-btn"
         onClick={() => {
           selectFoodType("jiangnan");
         }}
@@ -41,6 +53,7 @@ const Menubox = ({ menuList, selectFood, foodType, selectFoodType }) => {
         Jiang Nan Reminisce
       </button>
       <button
+        className="menu-btn"
         onClick={() => {
           selectFoodType("cheli");
         }}
@@ -48,6 +61,7 @@ const Menubox = ({ menuList, selectFood, foodType, selectFoodType }) => {
         Taste of Che-Li
       </button>
       <button
+        className="menu-btn"
         onClick={() => {
           selectFoodType("rice");
         }}
@@ -55,6 +69,7 @@ const Menubox = ({ menuList, selectFood, foodType, selectFoodType }) => {
         Rice & Noodles
       </button>
       <button
+        className="menu-btn"
         onClick={() => {
           selectFoodType("dimsum");
         }}
@@ -62,6 +77,7 @@ const Menubox = ({ menuList, selectFood, foodType, selectFoodType }) => {
         Homemade Dim Sum
       </button>
       <button
+        className="menu-btn"
         onClick={() => {
           selectFoodType("desserts");
         }}

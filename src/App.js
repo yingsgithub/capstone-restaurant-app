@@ -207,7 +207,9 @@ function App() {
     <Router>
       <nav>
         <Link to="/"> Home </Link>
+        <span>&nbsp;&nbsp;</span>
         <Link to="/menu"> Menu </Link>
+        <span>&nbsp;&nbsp;</span>
         {tableNum ? (
           <Link onClick={getBill} to="/bill">
             View Bill

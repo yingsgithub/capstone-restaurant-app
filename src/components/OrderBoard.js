@@ -35,9 +35,12 @@ function OrderBoard({
   });
   const whichButton =
     tableNum && peopleNum ? (
-      <button onClick={createOrder}>Submit Orders</button>
+      <button className="menu-btn" onClick={createOrder}>
+        Submit Orders
+      </button>
     ) : (
       <button
+        className="menu-btn"
         onClick={() => {
           setButtonPopup(true);
         }}
@@ -56,23 +59,35 @@ function OrderBoard({
       <div></div>
     );
 
+  const myMenuStyle = {
+    backgroundImage: "url(/jiangnanlake.png)",
+    height: "60vh",
+    marginTop: "20px",
+    // fontSize: "50px",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  };
+
   return (
     <div>
-      <h1>Orders</h1>
-      {/* <p>Table #: {tableNum}</p>
+      <div className="Order-Board" style={myMenuStyle}>
+        <h1>Orders</h1>
+        {/* <p>Table #: {tableNum}</p>
       <p>{peopleNum} People</p> */}
-      {showTableNum}
-      {OrderItemComp}
-      <h1> Total ${subTotal} </h1>
-      <div>
-        {whichButton}
-        <Popup
-          trigger={buttonPopup}
-          setTrigger={setButtonPopup}
-          setTableNum={setTableNum}
-          setPeopleNum={setPeopleNum}
-        ></Popup>
+        {showTableNum}
+        {OrderItemComp}
+        {orderList[0] ? <h2>Total ${subTotal} </h2> : <div></div>}
+        <div>
+          {whichButton}
+          <Popup
+            trigger={buttonPopup}
+            setTrigger={setButtonPopup}
+            setTableNum={setTableNum}
+            setPeopleNum={setPeopleNum}
+          ></Popup>
+        </div>
       </div>
+      {/* <div className="home-page" style={myMenuStyle}></div> */}
     </div>
   );
 }

@@ -1,16 +1,13 @@
-.App {
-  /* text-align: center; */
-}
+/* .bill-page {
+  text-align:left;
+} */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bill-container{
+  text-align:left;
+  /* padding:10%; */
+  /* border: solid rebeccapurple; */
+  margin-left: -180px;
+  
 }
 
 .App-header {
@@ -24,62 +21,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.foodContainer{
-  display:flex;
-  flex-direction: column;
-  border: 0.2rem outset darkslategrey;
-  border-radius: 12px;
-  width: 220px;				/* width of image (px or % or auto) */
-  height: 300px;	
-  margin:0
-}
-
-/* .food-box{
-  display: flex;
-
-} */
-
-.OrderBoard{
-  border: 0.2rem, solid, grey;
-  border-radius: 12px;
-}
-
-.OrderDisplay{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-}
-
-img{
-  /* border: 1px solid #ddd;
-  /* border-radius: 4px; */
-  padding: 5px;
-  /* width: 150px; */
-  border: 1px solid #ddd;	/* thickness and color of border */
-  border-radius: 4px;		/* edge rounding of border */
-  width: 200px;				/* width of image (px or % or auto) */
-  height: 200px;	
-
-}
-
-
-.row {
-  display: flex;
-}
 
 .column {
   flex: 33.33%;
@@ -94,9 +35,127 @@ img{
   transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
+
+.cookie-container{
+  border: solid palevioletred;
+  margin-left: -180px;
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cookie-fortune{
+  display: flex;
+  flex: 1fr 2fr 
+}
+
+.cookie-img{
+  height: 200px;
+  width: 50%;
+}
+
+.cookie-quote{
+  border: solid darkgrey;
+  border-radius: 1%;
+
+  /* margin-left: -180px; */
+  width: 40%;
+}
+
+
+
+.foodContainer{
+  display:flex;
+  flex-direction: column;
+  border: 0.2rem outset black;
+  border-radius: 4%;
+  width: 220px;				/* width of image (px or % or auto) */
+  height: 300px;	
+  margin:0;
+}
+
+/* .food-box{
+  display: flex;
+  flex-wrap: wrap;
+
+} */
+
+/* .OrderBoard{
+  border: 0.2rem, solid, grey;
+  border-radius: 12px;
+} */
+
+
+
+.OrderDisplay{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.pmt-message{
+  width: 40%;
+  /* height: 18px; */
+}
+
+img{
+  /* border: 1px solid #ddd;
+  /* border-radius: 4px; */
+  padding: 5px;
+  /* width: 150px; */
+  border: 1px solid #ddd;	/* thickness and color of border */
+  border-radius: 10%;		/* edge rounding of border */
+  width: 170px;				/* width of image (px or % or auto) */
+  height: 180px;	
+
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  /* align-items: flex-start; */
+}
+
+
+
 /* Top left text */
 .top-left {
   position: absolute;
   top: 8px;
-  left: 16px;
+  left: 30px;
+}
+
+/* Style the buttons */
+.menu-btn {
+  /* border: solid #929AAB; */
+  border: solid white;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #EEEEEE;
+  cursor: pointer;
+  display: inline;
+}
+
+/* Add a grey background color on mouse-over */
+.menu-btn:hover {
+  background-color: #ddd;
+}
+
+/* Add a dark background color to the active button */
+.menu-btn.active {
+  background-color: #666;
+  color: white;
+}
+
+.menu-bkg,.OrderBoard,nav{
+  /* background-color: #F7F6F2; */
+  /* background-color: #393E46; */
+}
+
+.OrderBoard{
+  /* border: solid lightgrey; */
+
 }

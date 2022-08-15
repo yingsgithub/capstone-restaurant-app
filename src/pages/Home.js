@@ -1,6 +1,15 @@
 import React from "react";
+import "../App.css";
 
 function Home() {
+  const myStyle = {
+    backgroundImage: "url(/jiangnanwall.png)",
+    height: "100vh",
+    marginTop: "-70px",
+    fontSize: "50px",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  };
   return (
     <div>
       <h1> C&nbsp;H&nbsp;E&nbsp;L&nbsp;I&nbsp;浙里 </h1>
@@ -18,6 +27,7 @@ function Home() {
         ingredients, lots of seafood and the skillful use of soy sauce and sugar
         to make rich, tasty braising sauces.
       </p>
+      <div className="home-page" style={myStyle}></div>
     </div>
   );
 }
