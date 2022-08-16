@@ -83,65 +83,81 @@ function Bill({
     }
   };
 
-  const myBillStyle = {
-    backgroundImage: "url(/shuimojiangnan.png)",
-    height: "70vh",
-    marginTop: "0px",
-    marginLeft: "200px",
-    // fontSize: "50px",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
+  // random color for fortune cookie messages
+  const colors = [
+    "darkseagreen",
+    "IndianRed",
+    "Tan",
+    "lightblue",
+    "burlywood",
+    "Orchid",
+    "steelblue",
+    "darksalmon",
+    "Salmon",
+    "plum",
+    "DarkGray",
+    "palevioletred",
+    "lightseagreen ",
+    "GoldenRod",
+  ];
+  const getColor = () => {
+    const len = colors.length;
+    const randomNum = Math.floor(Math.random() * len);
+    let color = colors[randomNum];
+    console.log(color);
+    return color;
   };
 
   return (
-    <div className="bill-page" style={myBillStyle}>
-      <div className="bill-container">
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <h2>Table #: {tableNum}</h2>
-        <h4>{peopleNum} people</h4>
-        <div>{BillItemComp}</div>
-        <div>
-          <h3>Sub Total: ${finalTotal}</h3>
-          <h3>Tax: ${Tax}</h3>
-          <h3>Total: ${Total}</h3>
-        </div>
-        {/* </div> */}
-        <br></br>
-        <br></br>
+    <div className="bill-bkg">
+      <div className="bill-page">
+        <div className="bill-container">
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <h2>Table #: {tableNum}</h2>
+          <h4>{peopleNum} people</h4>
+          <div>{BillItemComp}</div>
+          <div>
+            <h3>Sub Total: ${finalTotal}</h3>
+            <h3>Tax: ${Tax}</h3>
+            <h3>Total: ${Total}</h3>
+          </div>
+          {/* </div> */}
+          <br></br>
+          <br></br>
 
-        <div>
-          <h2>How would you like to pay your bill?</h2>
-          <select
-            onChange={selectPayment}
-            name="paymentOptions"
-            id="pmt-select"
-          >
-            {paymentOption.map((option, index) => {
-              return (
-                <option key={index} value={option.value}>
-                  {option.text}
-                </option>
-              );
-            })}
-          </select>
-          <div className="pmt-message">
-            {paymentMessage ? (
-              <div> {paymentMessage}</div>
-            ) : (
-              <div>
-                {/* <form onSubmit={handleSubmit}>
+          <div>
+            <h2>How would you like to pay your bill?</h2>
+            <select
+              onChange={selectPayment}
+              name="paymentOptions"
+              id="pmt-select"
+            >
+              {paymentOption.map((option, index) => {
+                return (
+                  <option key={index} value={option.value}>
+                    {option.text}
+                  </option>
+                );
+              })}
+            </select>
+            <div className="pmt-message">
+              {paymentMessage ? (
+                <div> {paymentMessage}</div>
+              ) : (
+                <div>
+                  {/* <form onSubmit={handleSubmit}>
                 <input
                   type="number"
                   value={subBill}
@@ -151,15 +167,16 @@ function Bill({
                 ></input>
                 <button type="submit">add a bill</button>
               </form> */}
-              </div>
-            )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
       {/* fortune Cookie */}
       {paymentMessage ? (
         <div className="cookie-container">
-          <h1>Fortune Cookie Time</h1>
+          <h1>Click on the picture to get a Fortune Cookie 🥠</h1>
 
           {/* <button img src className="cookie-btn" onClick={getFortuneCookie}> */}
 
@@ -175,7 +192,10 @@ function Bill({
                 onClick={getFortuneCookie}
               />
             </div>
-            <div className="cookie-quote">{quote.quote}</div>
+            <div className="cookie-quote" style={{ color: getColor() }}>
+              <br></br>
+              {quote.quote}
+            </div>
           </div>
         </div>
       ) : (

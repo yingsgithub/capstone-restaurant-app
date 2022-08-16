@@ -1,12 +1,10 @@
-/* .bill-page {
-  text-align:left;
-} */
+
 
 .bill-container{
   text-align:left;
   /* padding:10%; */
   /* border: solid rebeccapurple; */
-  margin-left: -180px;
+  margin-left: -400px;
   
 }
 
@@ -19,6 +17,19 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.bill-bkg{
+  background: url(/public/shuimojiangnan.png);
+  background-repeat: no-repeat;
+  max-width: 80%;
+  height: 150vh;
+  /* height: 100vh; */
+  /* background-size: auto; */
+  margin-left: 30%;
+  background-size: 70%;
+  
+
 }
 
 
@@ -37,29 +48,46 @@
 
 
 .cookie-container{
-  border: solid palevioletred;
-  margin-left: -180px;
-  margin-top: 100px;
-  display: flex;
-  flex-wrap: wrap;
+  border-style: dotted ;
+  border: palevioletred;
+  margin-left: -400px;
+  margin-top: 250px;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
 }
+
+.cookie-container h1{
+  font-family: "Comic Sans MS", courier-new;;
+  font-size: 2em;
+  
+}
+
 
 .cookie-fortune{
+
+  text-align: left;
   display: flex;
-  flex: 1fr 2fr 
+  flex: 2fr 3fr 
 }
 
-.cookie-img{
-  height: 200px;
-  width: 50%;
-}
+
 
 .cookie-quote{
+  font-family: "Comic Sans MS", courier-new;
+  font-size: 1.5em;
+  font-weight: bold;
   border: solid darkgrey;
   border-radius: 1%;
-
+  min-height: 100px;
+  background-color: #FFFFFF;
+  border: 10px solid #F9F9F9;
+  padding:10px;
   /* margin-left: -180px; */
   width: 40%;
+}
+
+.cookie-emoji{
+
 }
 
 
@@ -95,7 +123,7 @@
 }
 
 .pmt-message{
-  width: 40%;
+  width: 35%;
   /* height: 18px; */
 }
 
