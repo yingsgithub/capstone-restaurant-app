@@ -28,8 +28,6 @@
   /* background-size: auto; */
   margin-left: 30%;
   background-size: 70%;
-  
-
 }
 
 
@@ -86,12 +84,6 @@
   width: 40%;
 }
 
-.cookie-emoji{
-
-}
-
-
-
 .foodContainer{
   display:flex;
   flex-direction: column;
@@ -113,7 +105,52 @@
   border-radius: 12px;
 } */
 
+.home-img{
+  width: 40%;
+  height: 40%;
+  border-radius: 6%;
+  margin-top: 10%;
+}
 
+
+
+
+.home-container {
+  position: relative;
+  max-width: 800px; /* Maximum width */
+  margin: 0 auto;
+   /* Center it */
+}
+
+.home-container .home-content { 
+  position: absolute; /* Position the background text */
+  /* bottom: 0; At the bottom. Use top:0 to append it to the top */
+  /* background: rgb(0, 0, 0); */
+  /* background: rgba(0, 0, 0, 0.5);  */
+  color: darkgray; /* Grey text */
+  width: 50%; /* Full width */
+  /* padding: 20px; Some padding */
+}
+
+.home-container2{
+  position: relative;
+  max-width: 800px; /* Maximum width */
+  /* margin: 0 auto; */
+   /* Center it */
+  margin-top: 900px;
+  margin-left: 50%;
+}
+
+.home-bkg{
+  background: url(/public/homepage-bkg.png);
+  background-repeat: no-repeat;
+  /* max-width: 80%; */
+  height: 180vh;
+  /* height: 100vh; */
+  background-size: cover;
+  
+  /* background-size: 70%; */
+}
 
 .OrderDisplay{
   display: flex;
