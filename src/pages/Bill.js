@@ -56,13 +56,15 @@ function Bill({
 
   const Tax = Number(Number.parseFloat(finalTotal * 0.08).toFixed(2));
   const Total = Number(Number.parseFloat(finalTotal + Tax).toFixed(2));
+  const averagePay = Number(Number.parseFloat(Total / peopleNum).toFixed(2));
+  console.log("#####", averagePay);
 
   const [paymentMessage, setPaymentMessage] = useState("");
 
   const paymentOption = [
     { value: "", text: "...Choose an option" },
     { value: "As it is", text: "As it is" },
-    { value: "Split by num of peoples", text: "Split by num of peoples" },
+    { value: "Split by num of people", text: "Split by num of people" },
     { value: "Split in my own way", text: "Split in my own way" },
   ];
 
@@ -73,10 +75,8 @@ function Bill({
         `Your bill is $ ${Total}. 
         Thank you for eating at Cheli, we will bring your bill soon!`
       );
-    } else if (event.target.value == "Split by num of peoples") {
-      const message = `Your bill will be splitted into ${peopleNum} bills, each bill is $ ${
-        Total / peopleNum
-      }. Thank you for eating at Cheli, we will bring your bill soon!`;
+    } else if (event.target.value == "Split by num of people") {
+      const message = `Your bill will be splitted into ${peopleNum} bills, each bill is $ ${averagePay}. Thank you for eating at Cheli, we will bring your bills soon!`;
       setPaymentMessage(message);
     } else if (event.target.value == "Split in my own way") {
       setPaymentMessage("");

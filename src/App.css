@@ -4,7 +4,7 @@
   text-align:left;
   /* padding:10%; */
   /* border: solid rebeccapurple; */
-  margin-left: -400px;
+  margin-left: -30%;
   
 }
 
@@ -48,7 +48,7 @@
 .cookie-container{
   border-style: dotted ;
   border: palevioletred;
-  margin-left: -400px;
+  margin-left: -30%;
   margin-top: 250px;
   /* display: flex; */
   /* flex-wrap: wrap; */
@@ -94,42 +94,34 @@
   margin:0;
 }
 
-/* .food-box{
-  display: flex;
-  flex-wrap: wrap;
-
-} */
-
-/* .OrderBoard{
-  border: 0.2rem, solid, grey;
-  border-radius: 12px;
-} */
 
 .home-img{
   width: 40%;
   height: 40%;
   border-radius: 6%;
-  margin-top: 10%;
+  margin-top: 5%;
+  
 }
-
-
 
 
 .home-container {
   position: relative;
-  max-width: 800px; /* Maximum width */
+  max-width: 60%; 
   margin: 0 auto;
    /* Center it */
 }
 
 .home-container .home-content { 
-  position: absolute; /* Position the background text */
+  /* position: absolute; Position the background text */
   /* bottom: 0; At the bottom. Use top:0 to append it to the top */
   /* background: rgb(0, 0, 0); */
   /* background: rgba(0, 0, 0, 0.5);  */
   color: darkgray; /* Grey text */
-  width: 50%; /* Full width */
+  width: 55%; /* Full width */
   /* padding: 20px; Some padding */
+  /* bottom: 0; */
+  margin-top: 25%;
+  /* position: absolute; */
 }
 
 .home-container2{
@@ -148,7 +140,8 @@
   height: 180vh;
   /* height: 100vh; */
   background-size: cover;
-  
+  position: relative;
+  margin: 0 auto;
   /* background-size: 70%; */
 }
 
@@ -229,10 +222,10 @@ img{
 }
 
 
-
 .OrderBoard{
   /* border: solid lightgrey; */
-margin-top: 400px;
+margin-top: 20%;
+margin-left: 3%;
 }
 
 
