@@ -60,7 +60,7 @@ function OrderBoard({
     );
 
   const myMenuStyle = {
-    backgroundImage: "url(/jiangnanlake.png)",
+    // backgroundImage: "url(/jiangnanlake.png)",
     height: "60vh",
     marginTop: "20px",
     // fontSize: "50px",
@@ -74,6 +74,7 @@ function OrderBoard({
         <h1>Orders</h1>
         {/* <p>Table #: {tableNum}</p>
       <p>{peopleNum} People</p> */}
+
         {showTableNum}
         {OrderItemComp}
         {orderList[0] ? <h2>Total ${subTotal} </h2> : <div></div>}

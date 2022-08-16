@@ -47,7 +47,7 @@ function Home() {
         </div>
         <br></br>
       </div>
-      {/* <div className="home-page"></div> */}
+      <footer>Location: 19 St Marks Pl Ste 23 New York, NY 10003</footer>
     </div>
   );
 }

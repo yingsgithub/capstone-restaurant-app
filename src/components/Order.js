@@ -12,6 +12,44 @@ const Order = ({
   return (
     <div>
       <div className="OrderDisplay">
+        {/* <table >
+          <tr>
+            <td>{orderItem}</td>
+            <td>{itemPrice}</td>
+            <td>
+              {" "}
+              <button
+                onClick={() => {
+                  reduceOne(orderId, quantity);
+                }}
+              >
+                {" "}
+                -{" "}
+              </button>
+              {quantity}
+              <button
+                onClick={() => {
+                  addOne(orderId, quantity);
+                }}
+              >
+                {" "}
+                +{" "}
+              </button>
+            </td>
+            <td>
+              {" "}
+              <button
+                onClick={() => {
+                  deleteFood(orderId);
+                }}
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+          <tbody></tbody>
+        </table> */}
+
         <div>{orderItem}</div>
         <div>{itemPrice}</div>
         <div className="Amount">

@@ -1,6 +1,5 @@
 import React from "react";
 import MenuItem from "./MenuItem";
-import Popupmessage from "./Popupmessage";
 
 const Menubox = ({ menuList, selectFood, foodType, selectFoodType }) => {
   const menuItemComp = menuList.map((food, index) => {
